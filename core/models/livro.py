@@ -15,4 +15,9 @@ class Livro(models.Model):
     def __str__(self):
         return f"({self.id}) {self.titulo} ({self.quantidade})"
     
+    class Meta:
+
+        verbose_name = "Livro"
+        verbose_name_plural = "Livros"
+    
     
