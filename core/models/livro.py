@@ -1,10 +1,13 @@
 from django.db import models
 
+from uploader.models import Image
+
 from .categoria import Categoria
 from .editora import Editora
 from .autor import Autor
 
 class Livro(models.Model):
+    capa = models.ForeignKey(Image, related_name="+", on_delete=models.SET_NULL, null=True, blank=True, default=None)
     titulo = models.CharField(max_length=255)
     isbn = models.CharField(max_length=32, null=True, blank=True)
     quantidade = models.IntegerField(default=0, null=True, blank=True)
