@@ -26,15 +26,15 @@ class CategoriaAdmin(admin.ModelAdmin):
     ordering = ('descricao',)
     list_per_page = 10
 
-admin.register(Editora)
+@admin.register(Editora)
 class EditoraAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'email', 'cidade')
-    search_fields = ('nome', 'email', 'cidade')
-    list_filter = ('nome', 'email', 'cidade')
-    ordering = ('nome', 'email', 'cidade')
+    list_display = ('nome', 'email', 'cidade', 'site')
+    search_fields = ('nome', 'email', 'cidade', 'site')
+    list_filter = ('nome', 'email', 'cidade', 'site')
+    ordering = ('nome', 'email', 'cidade', 'site')
     list_per_page = 25
     
-admin.register(Livro)
+@admin.register(Livro)
 class LivroAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'editora', 'categoria')
     search_fields = ('titulo', 'editora_nome', 'categoria_descricao')
@@ -50,7 +50,7 @@ class UserAdmin(BaseUserAdmin):
     list_display = ["email", "name"]
     fieldsets = (
         (None, {"fields": ("email", "password")}),
-        (_("Personal Info"), {"fields": ("name", "passage_id")}),
+        (_("Personal Info"), {"fields": ("name", "passage_id", "foto")}),
         (
             _("Permissions"),
             {
