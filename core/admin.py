@@ -27,7 +27,7 @@ class CategoriaAdmin(admin.ModelAdmin):
     list_per_page = 10
 
 @admin.register(Editora)
-class EditoraAdmin(admin.ModelAdmin):
+class EditoraAdmin(admin.ModelAdmin):           
     list_display = ('nome', 'email', 'cidade', 'site')
     search_fields = ('nome', 'email', 'cidade', 'site')
     list_filter = ('nome', 'email', 'cidade', 'site')
