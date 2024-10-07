@@ -5,4 +5,4 @@ from core.serializers import CompraSerializer
 
 class CompraViewSet(ModelViewSet):
     queryset = Compra.objects.all()
-    serializer_class + CompraSerializer
+    serializer_class = CompraSerializer
