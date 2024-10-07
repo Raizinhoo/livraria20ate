@@ -8,7 +8,10 @@ from django.utils.translation import gettext_lazy as _
 
 from core import models
 
-from core.models import Autor, Categoria, Editora, Livro, User
+from core.models import Autor, Categoria, Editora, Livro, User, Compra, ItensCompra
+
+admin.site.register(Compra)
+admin.site.register(ItensCompra)
 
 @admin.register(Autor)
 class AutorAdmin(admin.ModelAdmin):
