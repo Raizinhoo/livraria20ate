@@ -14,18 +14,39 @@ from drf_spectacular.views import (
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from core.views import UserViewSet
-from core.views import CategoriaViewSet
-from core.views import EditoraViewSet
-from core.views import AutorViewSet
-from core.views import LivroViewSet
+from core.views import (
+    AutorViewSet,
+    CategoriaViewSet,
+    CompraViewSet,
+    EditoraViewSet,
+    LivroViewSet,
+    UserViewSet,
+)
 
 router = DefaultRouter()
 
-router.register(r"autores", AutorViewSet,)
-router.register(r"categorias", CategoriaViewSet,)
-router.register(r"editoras", EditoraViewSet,)
-router.register(r"livros", LivroViewSet,)
+router.register(
+    r"autores",
+    AutorViewSet,
+)
+router.register(
+    r"categorias",
+    CategoriaViewSet,
+)
+router.register(
+    r"editoras",
+    EditoraViewSet,
+)
+router.register(
+    r"livros",
+    LivroViewSet,
+)
+
+router.register(
+    r"compras",
+    CompraViewSet,
+)
+
 router.register(r"usuarios", UserViewSet, basename="usuarios")
 
 
@@ -48,7 +69,7 @@ urlpatterns = [
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     # API
     path("api/", include(router.urls)),
-    path("api/media/", include(uploader_router.urls))
+    path("api/media/", include(uploader_router.urls)),
 ]
 
 urlpatterns += static(settings.MEDIA_ENDPOINT, document_root=settings.MEDIA_ROOT)
