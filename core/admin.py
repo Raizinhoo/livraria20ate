@@ -10,8 +10,20 @@ from core import models
 
 from core.models import Autor, Categoria, Editora, Livro, User, Compra, ItensCompra
 
-admin.site.register(Compra)
 admin.site.register(ItensCompra)
+
+class ItensCompraInLine(admin.StackedInline):
+    model = ItensCompra
+    extra = 1 # quantidade de itens adicionais
+    
+@admin.register(Compra)
+class CompraAdmin(admin.ModelAdmin):
+    list_display = ("usuario", "status")
+    search_fields = ("usuario", "status")
+    list_filter = ("usuario", "status")
+    ordering = ("usuario", "status")
+    list_per_page = 25
+    inlines = [ItensCompraInLine]
 
 @admin.register(Autor)
 class AutorAdmin(admin.ModelAdmin):
