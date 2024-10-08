@@ -14,7 +14,7 @@ class ItensCompraSerializer(ModelSerializer):
     total = SerializerMethodField()
     
     def get_total(self, instance):
-        return instance.livro.preco * instance.quantidade
+        return instance.livro.preco * instance.quantidade #####
     
     class Meta:
         model = ItensCompra
