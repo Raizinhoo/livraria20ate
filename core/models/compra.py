@@ -21,7 +21,7 @@ class ItensCompra(models.Model):
     livro = models.ForeignKey(Livro, on_delete=models.PROTECT, related_name="+")
     quantidade = models.IntegerField(default=1)
     
-#     def __str__(self):
-#         return f"({self.id}) {self.livro}"
+    def __str__(self):
+        return f"({self.id}) {self.livro.titulo}({self.livro.quantidade}) R${self.livro.preco}"
        
 
