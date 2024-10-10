@@ -36,7 +36,7 @@ class CompraSerializer(ModelSerializer):
         fields = ("id", "usuario", "status", "total", "itens")
         
 class CriarEditarCompraSerializer(ModelSerializer):
-    itens = CriarEditarItensCompraSerializer(many=True)
+    itens = CriarEditarItensCompraSerializer(many=True) # eu tinha esquecido de comitar o nome 
     
     class Meta:
         model = Compra
