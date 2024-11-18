@@ -40,7 +40,7 @@ class CriarEditarCompraSerializer(ModelSerializer):
     
     class Meta:
         model = Compra
-        fields = ("usuario", "itens")
+        fields = ("usuario", "itens", "status")
         
     def create(self, validated_data):
         itens_data = validated_data.pop("itens")
@@ -68,9 +68,10 @@ class ListarItensCompraSerializer(ModelSerializer):
         depth = 1
         
 class ListarCompraSerializer(ModelSerializer):
-    usuario = CharField(source="usuario.email", read_only=True)
+    usuario = CharField(source="usuario.id", read_only=True)
     itens = ListarItensCompraSerializer(many=True, read_only=True)
+    status_display = CharField(source="get_status_display", read_only=True)
        
     class Meta:
         model = Compra
-        fields = ("id", "usuario", "itens")
+        fields = ("id", "usuario", "status", "status_display", "itens")
