@@ -1,6 +1,10 @@
-from rest_framework.serializers import ModelSerializer, CharField, SerializerMethodField
+from rest_framework.serializers import ModelSerializer, CharField, SerializerMethodField, HiddenField, CurrentUserDefault
 
 from core.models import Compra, ItensCompra, Livro
+
+class CompraCreateUpdateSerializer(ModelSerializer): 
+    usuario = HiddenField(default=CurrentUserDefault())
+    # acredito que n esta certo
 
 class LivroSimplificadoSerializer(ModelSerializer):
     class Meta:
