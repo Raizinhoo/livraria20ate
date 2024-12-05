@@ -2,10 +2,6 @@ from rest_framework.serializers import ModelSerializer, CharField, SerializerMet
 
 from core.models import Compra, ItensCompra, Livro
 
-class CompraCreateUpdateSerializer(ModelSerializer): 
-    usuario = HiddenField(default=CurrentUserDefault())
-    # acredito que n esta certo
-
 class LivroSimplificadoSerializer(ModelSerializer):
     class Meta:
         model = Livro
@@ -40,7 +36,7 @@ class CompraSerializer(ModelSerializer):
         fields = ("id", "usuario", "status", "total", "itens")
         
 class CriarEditarCompraSerializer(ModelSerializer):
-    itens = CriarEditarItensCompraSerializer(many=True) # eu tinha esquecido de comitar o nome
+    usuario = HiddenField(default=CurrentUserDefault()) # eu tinha esquecido de comitar o nome
     
     class Meta:
         model = Compra
