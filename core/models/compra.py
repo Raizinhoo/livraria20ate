@@ -11,7 +11,8 @@ class StatusCompra(models.IntegerChoices):
         
 class Compra(models.Model):        
     usuario = models.ForeignKey(User, on_delete=models.PROTECT, related_name="compras")
-    status = models.IntegerField(choices=StatusCompra.choices, default=StatusCompra.CARRINHO)        
+    status = models.IntegerField(choices=StatusCompra.choices, default=StatusCompra.CARRINHO)
+    data = models.DateTimeField(auto_now_add=True)        
     @property
     def total(self):
             return sum(item.preco * item.quantidade for item in self.itens.all())
