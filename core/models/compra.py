@@ -9,7 +9,17 @@ class StatusCompra(models.IntegerChoices):
         PAGO = 3, "Pago"
         ENTREGUE = 4, "Entregue"
         
-class Compra(models.Model):        
+class Compra(models.Model):
+    class TipoPagamento(models.IntegerChoices):
+        CARTAO_CREDITO = 1, "Cartão de Crédito"
+        CARTAO_DEBITO = 2, "Cartão de Débito"
+        PIX = 3, "PIX"
+        BOLETO = 4, "Boleto"
+        TRANSFERENCIA_BANCARIA = 5, "Transferência Bancária"
+        DINHEIRO = 6, "Dinheiro"
+        OUTRO = 7, "Outro"
+        
+    tipo_pagamento = models.IntegerField(choices=TipoPagamento.choices, default=TipoPagamento.CARTAO_CREDITO)        
     usuario = models.ForeignKey(User, on_delete=models.PROTECT, related_name="compras")
     status = models.IntegerField(choices=StatusCompra.choices, default=StatusCompra.CARRINHO)
     data = models.DateTimeField(auto_now_add=True)        
