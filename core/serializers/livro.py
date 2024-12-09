@@ -1,4 +1,10 @@
-from rest_framework.serializers import ModelSerializer, SlugRelatedField
+from rest_framework.serializers import (
+    DecimalField,
+    ModelSerializer,
+    Serializer,
+    SlugRelatedField,
+    ValidationError,
+)
 
 from core.models import Livro
 
@@ -25,3 +31,10 @@ class LivroListSerializer(ModelSerializer):
         model = Livro
         fields = ("id", "titulo", "preco")
         
+class LivroAlterarPrecoSerializer(serializers.Serializer):
+    preco = serializers.DecimalField(max_digits=10, decimal_places=2)
+    
+    def validate_preco(self, value):
+        if value <= 0:
+            raise serializers.ValidationError("O Preço Precisa ser Positivo, Cabeção!")
+        return value
