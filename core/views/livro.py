@@ -9,14 +9,10 @@ from core.serializers import (
     LivroDetailSerializer, 
     LivroListSerializer, 
     LivroSerializer,
-    LivroAlterarPrecoSerializer)######################
+    LivroAlterarPrecoSerializer)
 
-@action(detail=True, methods=["patch"])
-def alterar_preco(self, request, pk=None):
-    livro = self.get_object()
+
     
-    
-    #################
 class LivroViewSet(ModelViewSet):
     queryset = Livro.objects.all()
     serializer_class = LivroSerializer
@@ -27,3 +23,17 @@ class LivroViewSet(ModelViewSet):
         elif self.action == "retrieve":
             return LivroDetailSerializer
         return LivroSerializer
+    
+    @action(detail=True, methods=["patch"])
+    def alterar_preco(self, request, pk=None):
+        livro = self.get_object()
+        
+        serializer = LivroAlterarPrecoSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        livro.preco = serializer.validated_data["preco"]
+        livro.save()
+        
+        return Response(
+            {"detail": f"Preco do Livro '{livro.titulo}' atualizado para {livro.preco}."}, status=status.HTTP_200_OK
+        )

@@ -14,7 +14,7 @@ from core.models import Compra, ItensCompra, Livro
 class LivroSimplificadoSerializer(ModelSerializer):
     class Meta:
         model = Livro
-        fields = ("quantidade", "titulo", "capa", "editora", "categoria", "autor")
+        fields = ("quantidade", "titulo", "capa", "editora", "categoria", "autores")
 
 
 class ItensCompraSerializer(ModelSerializer):
