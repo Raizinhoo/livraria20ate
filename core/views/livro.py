@@ -46,8 +46,6 @@ class LivroViewSet(ModelViewSet):
         serializer = LivroAjustarEstoqueSerializer(data=request.data, context={"livro": livro})
         serializer.is_valid(raise_exception=True)
 
-        # breakpoint()
-
         quantidade_ajuste = serializer.validated_data["quantidade"]
 
         livro.quantidade += quantidade_ajuste
