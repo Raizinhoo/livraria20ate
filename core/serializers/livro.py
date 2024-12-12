@@ -8,34 +8,31 @@ from rest_framework.serializers import (
 )
 
 from core.models import Livro
-
+from core.serializers import CategoriaSerializer
 from uploader.models import Image
 from uploader.serializers import ImageSerializer
 
 
 class LivroSerializer(ModelSerializer):
-    capa_attachment_key = SlugRelatedField(
-        source="capa", queryset=Image.objects.all(), slug_field="attachment_key", required=False, write_only=True
-    )
-    capa = ImageSerializer(required=False, read_only=True)
-
+    categoria = CategoriaSerializer()
     class Meta:
         model = Livro
-        fields = "__all__"
+        fields = ('id', 'categoria')
 
 
 class LivroDetailSerializer(ModelSerializer):
-    class Meta:
-        model = Livro
-        fields = "__all__"
-        depth = 1
-        capa = ImageSerializer(required=False)
+        categoria = CategoriaSerializer()
+        class Meta:
+            model = Livro
+            fields = "__all__"
+            depth = 1
 
 
 class LivroListSerializer(ModelSerializer):
-    class Meta:
-        model = Livro
-        fields = ("id", "titulo", "preco")
+        categoria = CategoriaSerializer()
+        class Meta:
+            model = Livro
+            fields = ('id', 'categoria')
 
 
 class LivroAlterarPrecoSerializer(Serializer):
