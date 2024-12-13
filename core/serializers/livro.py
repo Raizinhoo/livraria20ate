@@ -17,7 +17,7 @@ class LivroSerializer(ModelSerializer):
     categoria = CategoriaSerializer()
     class Meta:
         model = Livro
-        fields = ('id', 'categoria')
+        fields = ('id', 'categoria', 'capa', 'titulo', 'preco' )
 
 
 class LivroDetailSerializer(ModelSerializer):
@@ -30,7 +30,7 @@ class LivroDetailSerializer(ModelSerializer):
 
 class LivroListSerializer(ModelSerializer):
         # capa = ImageSerializer()
-        # categoria = CategoriaSerializer()
+        categoria = CategoriaSerializer()
         class Meta:
             model = Livro
             fields = ('id', 'categoria', 'capa', 'titulo', 'preco')
