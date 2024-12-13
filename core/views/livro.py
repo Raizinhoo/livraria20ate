@@ -17,13 +17,13 @@ from core.serializers import (
 
 class LivroPagination(PageNumberPagination):
     page_size = 10
-    page_size_query_param = 'page_size'  # Permite que o cliente ajuste o tamanho da página
+    page_size_query_param = 'page_size'  
     max_page_size = 100
 
 class LivroViewSet(ModelViewSet):
     queryset = Livro.objects.all()
     serializer_class = LivroSerializer
-    pagination_class = LivroPagination  # Adiciona a classe de paginação
+    pagination_class = LivroPagination  
 
     def get_serializer_class(self):
         if self.action == "list":
