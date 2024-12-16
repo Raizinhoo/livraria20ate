@@ -14,7 +14,7 @@ from uploader.serializers import ImageSerializer
 
 
 class LivroSerializer(ModelSerializer):
-    categoria = CategoriaSerializer()
+    # categoria = CategoriaSerializer()
     class Meta:
         model = Livro
         fields = ('id', 'categoria', 'capa', 'titulo', 'preco' )
