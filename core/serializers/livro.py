@@ -17,7 +17,7 @@ class LivroSerializer(ModelSerializer):
     # categoria = CategoriaSerializer()
     class Meta:
         model = Livro
-        fields = ('id', 'categoria', 'capa', 'titulo', 'preco' )
+        fields = ('id', 'categoria', 'capa', 'titulo', 'preco', 'isbn', 'quantidade' )
 
 
 class LivroDetailSerializer(ModelSerializer):
